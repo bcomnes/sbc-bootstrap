@@ -4,26 +4,68 @@
 
   tasks:
   - name: Change root password
-
-  - name: Install etckeeper
-
-  - name: initialize and commit /etc
+    user:
+      name=root
+      password={{ root_pass }}
 
   - name: Set timezone
-
-  - name: Sync time with timeserver
+    command: timedatectl set-timezone {{ timezone }}
 
   - name: Create primary admin account
+    user:
+      name={{ admin_name }}
+      password={{ admin_pass }}
+      groups=wheel
 
-  - name: enable sudo for admin account
+  - name: install sudo
+    pacman:
+      name=sudo
+      state=present
+
+  - name: enable wheel group
+    lineinfile:
+      dest="/etc/sudoers"
+      regexp="^%wheel"
+      line="%wheel      ALL=(ALL) ALL"
 
   - name: Set up authorized keys for admin
+    authorized_key:
+      user={{ admin_name }}
+      key={{ admin_keys }}
 
   - name: disable root ssh access
+    lineinfile:
+      dest=/etc/ssh/sshd_config
+      regexp="^PermitRootLogin"
+      line="PermitRootLogin no"
+      state=present
+    notify: restart sshd
 
   - name: disable password authentication
+    lineinfile:
+      dest=/etc/ssh/sshd_config
+      regexp="^PasswordAuthentication"
+      line="PasswordAuthentication no"
+      state=present
+    notify: restart sshd
 
-  - name: install zeroconf networking
+  - name: install Avahi
+    pacman:
+      name=avahi
+      state=present
+
+  - name: install nss-mdns
+    pacman:
+      name=Avahi
+      state=present
+
+
+  - name: enable ipv6 zeroconf
+    lineinfile:
+      dest=/etc/avahi/avahi-daemon.conf
+      regexp="^use-ipv6"
+      line="use-ipv6=yes"
+      state=present
 
   - name: install fail2ban
 
@@ -34,5 +76,4 @@
     service:
       name=sshd
       state=restarted
-
 
