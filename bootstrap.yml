@@ -7,93 +7,93 @@
   tasks:
   - name: Change root password
     user:
-      name=root
-      password={{ root_pass }}
+      name: root
+      password: "{{ root_pass }}"
 
   - name: Set timezone
-    command: timedatectl set-timezone {{ timezone }}
+    command: timedatectl set-timezone "{{ timezone }}"
 
   - name: set hostname
+    hostname: name={{ hostname }}
 
   - name: Create primary admin account
     user:
-      name={{ admin_name }}
-      password={{ admin_pass }}
-      groups=wheel
+      name: "{{ admin_name }}"
+      password: "{{ admin_pass }}"
+      groups: wheel
 
   - name: install sudo
     pacman:
-      name=sudo
-      state=present
+      name: sudo
+      state: present
 
   - name: enable wheel group
     lineinfile:
-      dest="/etc/sudoers"
-      regexp="^%wheel"
-      line="%wheel      ALL=(ALL) ALL"
-      validate='visudo -cf %s'
+      dest: "/etc/sudoers"
+      regexp: "^%wheel"
+      line: "%wheel      ALL=(ALL) ALL"
+      validate: 'visudo -cf %s'
 
   - name: Set up authorized keys for admin
     authorized_key:
-      user={{ admin_name }}
-      key={{ admin_keys }}
+      user: "{{ admin_name }}"
+      key: "{{ admin_keys }}"
 
   - name: disable root ssh access
     lineinfile:
-      dest=/etc/ssh/sshd_config
-      regexp="^PermitRootLogin"
-      line="PermitRootLogin no"
-      state=present
+      dest: /etc/ssh/sshd_config
+      regexp: "^PermitRootLogin"
+      line: "PermitRootLogin no"
+      state: present
     notify: restart sshd
 
   - name: disable password authentication
     lineinfile:
-      dest=/etc/ssh/sshd_config
-      regexp="^PasswordAuthentication"
-      line="PasswordAuthentication no"
-      state=present
+      dest: /etc/ssh/sshd_config
+      regexp: "^PasswordAuthentication"
+      line: "PasswordAuthentication no"
+      state: present
     notify: restart sshd
 
   - name: install avahi
     pacman:
-      name=avahi
-      state=present
+      name: avahi
+      state: present
 
   - name: install nss-mdns
     pacman:
-      name=Avahi
-      state=present
+      name: Avahi
+      state: present
 
   - name: enable ipv6 avahi
     lineinfile:
-      dest=/etc/avahi/avahi-daemon.conf
-      regexp="^use-ipv6"
-      line="use-ipv6=yes"
-      state=present
+      dest: /etc/avahi/avahi-daemon.conf
+      regexp: "^use-ipv6"
+      line: "use-ipv6=yes"
+      state: present
     notify: restart avahi-daemon
 
   - name: enable .local resolution
-    lineinfile:"
-      dest=/etc/nsswitch.conf
-      state=present
-      regexp='^hosts'
-      line='hosts: files mdns_minimal [NOTFOUND=return] dns myhostname'
-      "
+    lineinfile:
+      dest: /etc/nsswitch.conf
+      state: present
+      regexp: '^hosts:'
+      line: "hosts: files mdns_minimal [NOTFOUND=return] dns myhostname"
 
   - name: enable avahi
     service:
-      name=avahi-daemon
-      enabled=yes
-      state=started
+      name: avahi-daemon
+      enabled: yes
+      state: started
 
   handlers:
   - name: restart sshd
     service:
-      name=sshd
-      state=restarted
+      name: sshd
+      state: restarted
 
   - name: restart avahi-daemon
     service:
-      name=avahi-daemon
-      state=restarted
+      name: avahi-daemon
+      state: restarted
 

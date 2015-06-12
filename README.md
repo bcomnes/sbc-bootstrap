@@ -26,3 +26,7 @@ set a new root password
 set new hostname
 create a primary user with sudo
 
+
+20:52 <bret> does arch arm sync to a time server by default?
+20:53 <@WarheadsSE> default installed systemd networkd trips timesyncd
+
