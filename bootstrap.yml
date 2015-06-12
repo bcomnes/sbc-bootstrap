@@ -1,6 +1,8 @@
 # bootstrap.yml
 ---
 - hosts: bootstrap
+  vars_files:
+  - vars.yml
 
   tasks:
   - name: Change root password
@@ -27,6 +29,7 @@
       dest="/etc/sudoers"
       regexp="^%wheel"
       line="%wheel      ALL=(ALL) ALL"
+      validate='visudo -cf %s'
 
   - name: Set up authorized keys for admin
     authorized_key:
@@ -49,7 +52,7 @@
       state=present
     notify: restart sshd
 
-  - name: install Avahi
+  - name: install avahi
     pacman:
       name=avahi
       state=present
@@ -59,21 +62,36 @@
       name=Avahi
       state=present
 
-
-  - name: enable ipv6 zeroconf
+  - name: enable ipv6 avahi
     lineinfile:
       dest=/etc/avahi/avahi-daemon.conf
       regexp="^use-ipv6"
       line="use-ipv6=yes"
       state=present
+    notify: restart avahi-daemon
 
-  - name: install fail2ban
+  - name: enable .local resolution
+    lineinfile:"
+      dest=/etc/nsswitch.conf
+      state=present
+      regexp='^hosts'
+      line='hosts: files mdns_minimal [NOTFOUND=return] dns myhostname'
+      "
 
-  - name: install updates
+  - name: enable avahi
+    service:
+      name=avahi-daemon
+      enabled=yes
+      state=started
 
   handlers:
   - name: restart sshd
     service:
       name=sshd
+      state=restarted
+
+  - name: restart avahi-daemon
+    service:
+      name=avahi-daemon
       state=restarted
 
