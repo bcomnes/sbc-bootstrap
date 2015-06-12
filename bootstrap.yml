@@ -13,6 +13,8 @@
   - name: Set timezone
     command: timedatectl set-timezone {{ timezone }}
 
+  - name: set hostname
+
   - name: Create primary admin account
     user:
       name={{ admin_name }}
