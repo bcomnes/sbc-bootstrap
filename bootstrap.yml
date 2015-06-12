@@ -1,3 +1,38 @@
 # bootstrap.yml
+---
+- hosts: bootstrap
+
+  tasks:
+  - name: Change root password
+
+  - name: Install etckeeper
+
+  - name: initialize and commit /etc
+
+  - name: Set timezone
+
+  - name: Sync time with timeserver
+
+  - name: Create primary admin account
+
+  - name: enable sudo for admin account
+
+  - name: Set up authorized keys for admin
+
+  - name: disable root ssh access
+
+  - name: disable password authentication
+
+  - name: install zeroconf networking
+
+  - name: install fail2ban
+
+  - name: install updates
+
+  handlers:
+  - name: restart sshd
+    service:
+      name=sshd
+      state=restarted
 
 
