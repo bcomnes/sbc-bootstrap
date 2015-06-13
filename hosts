@@ -1,8 +1,5 @@
 [bootstrap]
-192.168.1.110 ansible_ssh_user=root 
+192.168.1.110 ansible_ssh_user=root ansible_python_interpreter=/usr/bin/python2
 
-[lan]
-bret-raspi.local
-
-[wan]
-raspi.bret.io
+[strapped]
+bret-raspi.local ansible_python_interpreter=/usr/bin/python2

@@ -1,14 +1,19 @@
 # bootstrap.yml
 ---
 - hosts: bootstrap
+  gather_facts: false
+  tasks:
+    - name: bootstrap python2
+      raw: pacman -S --needed --noconfirm python2
+
+- hosts: bootstrap
   vars_files:
   - vars.yml
+  gather_facts: false
 
   tasks:
-  - name: Change root password
-    user:
-      name: root
-      password: "{{ root_pass }}"
+  - name: bootstrap python2
+    raw: pacman -S --needed --noconfirm python2
 
   - name: Set timezone
     command: timedatectl set-timezone "{{ timezone }}"
@@ -21,6 +26,7 @@
       name: "{{ admin_name }}"
       password: "{{ admin_pass }}"
       groups: wheel
+      update_password: on_create
 
   - name: install sudo
     pacman:
@@ -31,29 +37,13 @@
     lineinfile:
       dest: "/etc/sudoers"
       regexp: "^%wheel"
-      line: "%wheel      ALL=(ALL) ALL"
+      line: "%wheel      ALL=(ALL) NOPASSWD: ALL"
       validate: 'visudo -cf %s'
 
   - name: Set up authorized keys for admin
     authorized_key:
       user: "{{ admin_name }}"
       key: "{{ admin_keys }}"
-
-  - name: disable root ssh access
-    lineinfile:
-      dest: /etc/ssh/sshd_config
-      regexp: "^PermitRootLogin"
-      line: "PermitRootLogin no"
-      state: present
-    notify: restart sshd
-
-  - name: disable password authentication
-    lineinfile:
-      dest: /etc/ssh/sshd_config
-      regexp: "^PasswordAuthentication"
-      line: "PasswordAuthentication no"
-      state: present
-    notify: restart sshd
 
   - name: install avahi
     pacman:
@@ -62,7 +52,7 @@
 
   - name: install nss-mdns
     pacman:
-      name: Avahi
+      name: nss-mdns
       state: present
 
   - name: enable ipv6 avahi
@@ -87,10 +77,6 @@
       state: started
 
   handlers:
-  - name: restart sshd
-    service:
-      name: sshd
-      state: restarted
 
   - name: restart avahi-daemon
     service:

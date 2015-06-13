@@ -33,3 +33,6 @@ create a primary user with sudo
 pacman-key --populate archlinux
 pacman-key --refresh-keys
 
+Ansible requires patching for setting the hostname :[
+https://github.com/ansible/ansible/pull/8679/files
+

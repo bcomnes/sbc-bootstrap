@@ -1,0 +1,10 @@
+---
+# crypted passwords are required
+# http://docs.ansible.com/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+root_pass:
+timezone:
+hostname:
+admin_name:
+# crypted passwords are required
+admin_pass:
+admin_keys: https://github.com/username.keys
