@@ -2,7 +2,7 @@
 # crypted passwords are required
 # http://docs.ansible.com/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
 root_pass:
-timezone:
+timezone: America/Los_Angeles
 hostname:
 admin_name:
 # crypted passwords are required
