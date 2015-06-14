@@ -157,4 +157,6 @@ $ timedatectl list-timezones
 - disable root `ssh` access
 - disable password `ssh` logins
 
+![](img/htop.png)
 
+*Ahh.. a sight to be seen*
