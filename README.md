@@ -65,6 +65,10 @@ Arch should now be read to go on the SD card and should boot fine.
 
 ## Installing Arch the easy way
 
+Requirements:
+
+- USB SD Card Reader
+
 Use vagrant + virtual box + a 3rd party USB SD card reader. This way you can `vagrant up` a linux VM, mount the 3rd part USB SD card reader as a USB device and simply follow the standard directions.  3rd party SD card readers should be able to mount inside Guest Machines.
 
 ## Pre-playbook considerations
