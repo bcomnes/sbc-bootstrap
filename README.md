@@ -162,3 +162,7 @@ $ timedatectl list-timezones
 ![](img/htop.png)
 
 *Ahh.. a sight to be seen*
+
+## References:
+
+- [ansible-examples.yml](https://gist.github.com/bcomnes/668938bbacd8f3623957)
