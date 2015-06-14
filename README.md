@@ -3,6 +3,8 @@
 ![](img/raspi1.jpg)
 ![](img/raspi2.jpg)
 
+*Featuruing C4 Labs [Zebra Bold](http://www.amazon.com/Zebra-Bold-case-Raspberry-Black/dp/B00UFEBYNS) Case*
+
 Intro readings:
 
 - [Raspi Quickstart Guide](http://raspberrypi.org/qsg)
