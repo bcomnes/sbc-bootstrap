@@ -11,10 +11,6 @@
   - vars.yml
   gather_facts: false
 
-  tasks:
-  - name: bootstrap python2
-    raw: pacman -S --needed --noconfirm python2
-
   - name: Set timezone
     command: timedatectl set-timezone "{{ timezone }}"
 
