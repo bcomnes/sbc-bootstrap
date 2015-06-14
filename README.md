@@ -75,7 +75,7 @@ Use vagrant + virtual box + a 3rd party USB SD card reader. This way you can `va
 
 ## Pre-playbook considerations
 
-- install `etckeeper` and `init it`
+- install `etckeeper` and `init` it.
 - [Arch Wiki: Etckeeper](https://wiki.archlinux.org/index.php/Etckeeper)
 
 As root:
