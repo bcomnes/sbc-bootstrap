@@ -1,7 +1,7 @@
 # Raspberry Pi Arch Linux ARM Bootstrap
 
-![](img/raspi1.png)
-![](img/raspi2.png)
+![](img/raspi1.jpg)
+![](img/raspi2.jpg)
 
 Intro readings:
 
