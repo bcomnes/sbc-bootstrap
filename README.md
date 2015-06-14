@@ -1,5 +1,8 @@
 # Raspberry Pi Arch Linux ARM Bootstrap
 
+![](img/raspi1.png)
+![](img/raspi2.png)
+
 Intro readings:
 
 - [Raspi Quickstart Guide](http://raspberrypi.org/qsg)
