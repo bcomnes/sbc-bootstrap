@@ -6,6 +6,9 @@
 - [ ] Base programs to install
   - vim
   - mosh
+  - node/iojs?
+  - npm
+  - base-devel <--- build tools
 
 # Node notes
 
