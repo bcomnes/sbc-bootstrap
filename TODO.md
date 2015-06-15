@@ -6,3 +6,13 @@
 - [ ] Base programs to install
   - vim
   - mosh
+
+# Node notes
+
+- pacman -S node npm
+- echo "prefix = /usr/local" >> /usr/lib/node_modules/npm/npmrc
+- echo "python = /usr/bin/python2" >> /usr/lib/node_modules/npm/npmrc
+- cd ~
+- install pangyp -g
+- npm config set node-gyp pangyp
+- Own the /usr/local folder?  Maybe.. read mores
