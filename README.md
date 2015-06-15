@@ -9,6 +9,9 @@ Intro readings:
 
 - [Raspi Quickstart Guide](http://raspberrypi.org/qsg)
 - [Arch Linux ARM: Raspberry Pi 2](http://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2)
+- [Arch Linux Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide)
+- [Arch Linux General Recommendations](https://wiki.archlinux.org/index.php/General_recommendations)
+- [`systemd` basics](https://wiki.archlinux.org/index.php/Systemd#Basic_systemctl_usage)
 
 Arch is a difficult OS for beginners because it requires a fairly comprehensive understanding of how Linux systems are put together.
 
@@ -148,21 +151,43 @@ $ timedatectl list-timezones
 
 - Bootstrap python2 onto the system.
 - Set timezone
+  (Time is network syncted by default using [Systemd-timesyncd](https://wiki.archlinux.org/index.php/Systemd-timesyncd))
+- Set locale to en_US.UTF-8
 - Set the hostname
 - Create the primary admin account
-- Install sudo
+- Install sudo ([Arch Wiki: Sudo](https://wiki.archlinux.org/index.php/Sudo))
 - Set up the [`wheel`](https://en.wikipedia.org/wiki/Wheel_(Unix_term)) group
-- Install admins github public keys
+- Install admins github public keys ([`authorized_keys` module](http://docs.ansible.com/authorized_key_module.html))
 - Install zeroconf networking and .local resolution via [avahi](https://wiki.archlinux.org/index.php/Avahi)
 - Reconnect as the new admin user
 - Change the `root` password
-- disable root `ssh` access
-- disable password `ssh` logins
+- disable root `ssh` access ([ssh #Deny](https://wiki.archlinux.org/index.php/Secure_Shell#Deny))
+- disable password `ssh` logins ([SSH_keys#Disabling_password_logins](https://wiki.archlinux.org/index.php/SSH_keys#Disabling_password_logins))
 
 ![](img/htop.png)
 
 *Ahh.. a sight to be seen*
 
+## General System Maintenance
+
+- [System_maintenance](https://wiki.archlinux.org/index.php/System_maintenance)
+- [Pacman#Upgrading_packages](https://wiki.archlinux.org/index.php/Pacman#Upgrading_packages)
+
+```sh
+# Full update everything \o/
+$ pacman -Syu
+```
+
 ## References:
 
-- [ansible-examples.yml](https://gist.github.com/bcomnes/668938bbacd8f3623957)
+- [5minbootstrap](https://github.com/phred/5minbootstrap/blob/master/bootstrap.yml)
+- [phred/5minbootstrap](https://github.com/phred/5minbootstrap)
+- [My First 5 Minutes On A Server; Or, Essential Security for Linux Servers](http://plusbryan.com/my-first-5-minutes-on-a-server-or-essential-security-for-linux-servers)
+- [My First 5 Minutes on a Server (with Ansible)](http://practicalops.com/my-first-5-minutes-on-a-server-with-ansible.html)
+- [Ansible Docs](http://docs.ansible.com/playbooks.html)
+- [Ansible Pacman Module](http://docs.ansible.com/pacman_module.html)
+- [Ansible Yaml Docs](http://docs.ansible.com/YAMLSyntax.html)
+- [Ansible lineinfile module](http://docs.ansible.com/lineinfile_module.html)
+- [YAML ansible-examples.yml](https://gist.github.com/bcomnes/668938bbacd8f3623957)
+- [Arch Time Sync](https://wiki.archlinux.org/index.php/Time#Time_synchronization)
+- [How to Read the Arch Wiki](https://wiki.archlinux.org/index.php/Help:Reading)

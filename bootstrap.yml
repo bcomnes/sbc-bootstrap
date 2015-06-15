@@ -1,6 +1,7 @@
 # bootstrap.yml
 ---
 - hosts: bootstrap
+  # All of this runs as the root user
   gather_facts: false
   tasks:
     - name: bootstrap python2
@@ -8,74 +9,79 @@
 
 - hosts: bootstrap
   vars_files:
-  - vars.yml
+    - vars.yml
   gather_facts: false
+  tasks:
+    - name: Set timezone
+      command: timedatectl set-timezone "{{ timezone }}"
 
-  - name: Set timezone
-    command: timedatectl set-timezone "{{ timezone }}"
+    - name: generate en utf8 locale
+      locale_gen: name=en_US.UTF-8 state=present
 
-  - name: set hostname
-    hostname: name={{ hostname }}
+    - name: set system locale
+      command: "localectl set-locale LANG=en_US.UTF-8"
 
-  - name: Create primary admin account
-    user:
-      name: "{{ admin_name }}"
-      password: "{{ admin_pass }}"
-      groups: wheel
-      update_password: on_create
+    - name: set hostname
+      hostname: name={{ hostname }}
 
-  - name: install sudo
-    pacman:
-      name: sudo
-      state: present
+    - name: Create primary admin account
+      user:
+        name: "{{ admin_name }}"
+        password: "{{ admin_pass }}"
+        groups: wheel
+        update_password: on_create
 
-  - name: enable wheel group
-    lineinfile:
-      dest: "/etc/sudoers"
-      regexp: "^%wheel"
-      line: "%wheel      ALL=(ALL) NOPASSWD: ALL"
-      validate: 'visudo -cf %s'
+    - name: install sudo
+      pacman:
+        name: sudo
+        state: present
 
-  - name: Set up authorized keys for admin
-    authorized_key:
-      user: "{{ admin_name }}"
-      key: "{{ admin_keys }}"
+    - name: enable wheel group
+      lineinfile:
+        dest: "/etc/sudoers"
+        regexp: "^%wheel"
+        line: "%wheel      ALL=(ALL) NOPASSWD: ALL"
+        validate: 'visudo -cf %s'
 
-  - name: install avahi
-    pacman:
-      name: avahi
-      state: present
+    - name: Set up authorized keys for admin
+      authorized_key:
+        user: "{{ admin_name }}"
+        key: "{{ admin_keys }}"
 
-  - name: install nss-mdns
-    pacman:
-      name: nss-mdns
-      state: present
+    - name: install avahi
+      pacman:
+        name: avahi
+        state: present
 
-  - name: enable ipv6 avahi
-    lineinfile:
-      dest: /etc/avahi/avahi-daemon.conf
-      regexp: "^use-ipv6"
-      line: "use-ipv6=yes"
-      state: present
-    notify: restart avahi-daemon
+    - name: install nss-mdns
+      pacman:
+        name: nss-mdns
+        state: present
 
-  - name: enable .local resolution
-    lineinfile:
-      dest: /etc/nsswitch.conf
-      state: present
-      regexp: '^hosts:'
-      line: "hosts: files mdns_minimal [NOTFOUND=return] dns myhostname"
+    - name: enable ipv6 avahi
+      lineinfile:
+        dest: /etc/avahi/avahi-daemon.conf
+        regexp: "^use-ipv6"
+        line: "use-ipv6=yes"
+        state: present
+      notify: restart avahi-daemon
 
-  - name: enable avahi
-    service:
-      name: avahi-daemon
-      enabled: yes
-      state: started
+    - name: enable .local resolution
+      lineinfile:
+        dest: /etc/nsswitch.conf
+        state: present
+        regexp: '^hosts:'
+        line: "hosts: files mdns_minimal [NOTFOUND=return] dns myhostname"
+
+    - name: enable avahi
+      service:
+        name: avahi-daemon
+        enabled: yes
+        state: started
 
   handlers:
-
-  - name: restart avahi-daemon
-    service:
-      name: avahi-daemon
-      state: restarted
+    - name: restart avahi-daemon
+      service:
+        name: avahi-daemon
+        state: restarted
 
