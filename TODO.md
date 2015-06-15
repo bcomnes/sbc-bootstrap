@@ -8,6 +8,7 @@
   - mosh
   - node/iojs?
   - npm
+  - pangyp needed?
   - base-devel <--- build tools
 
 # Node notes
