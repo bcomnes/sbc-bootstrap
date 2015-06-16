@@ -11,6 +11,13 @@
   - pangyp needed?
   - base-devel <--- build tools
 
+11:25 <bret> is there a way to install custom prebuilt arm bins using pacman?
+11:26 <bret> vs just stowing in /usr/local
+11:26 <Freso> pacman -U
+11:27 <@WarheadsSE> make a pkgbuild for it, make it clean, use a /usr/local or /opt/xxx tree
+11:28 <bret> k i ll read about those things
+11:28 <bret> ty
+
 # Node notes
 
 - pacman -S node npm
