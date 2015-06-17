@@ -15,6 +15,10 @@ Intro readings:
 
 Arch is a difficult OS for beginners because it requires a fairly comprehensive understanding of how Linux systems are put together.
 
+This repo provides sane base configuration and a collection of optional roles approrpirate for a raspi2.
+
+![](img/ohyes.gif)
+
 ## For new SD Cards
 
 New SD cards need to be formatted a special way.  Use [sdformatter](https://www.sdcard.org/downloads/formatter_4/)
