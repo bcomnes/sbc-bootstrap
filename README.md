@@ -1,4 +1,4 @@
-# Raspberry Pi Arch Linux ARM Bootstrap
+# Raspberry Pi Arch Linux ARM Ansible Playbooks
 
 ![](img/raspi1.jpg)
 ![](img/raspi2.jpg)
@@ -15,7 +15,7 @@ Intro readings:
 
 Arch is a difficult OS for beginners because it requires a fairly comprehensive understanding of how Linux systems are put together.
 
-This repo provides sane base configuration and a collection of optional roles approrpirate for a raspi2.
+This repo provides sane base configuration through a minimal boostraping playbook and (soon) a collection of optional roles approrpirate for a raspi2 to serve different roles.
 
 ![](img/ohyes.gif)
 
