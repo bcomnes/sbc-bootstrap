@@ -182,6 +182,11 @@ $ timedatectl list-timezones
 $ pacman -Syu
 ```
 
+```sh
+# listing installed packages
+$ pacman -Qqn
+```
+
 ## References:
 
 - [5minbootstrap](https://github.com/phred/5minbootstrap/blob/master/bootstrap.yml)
