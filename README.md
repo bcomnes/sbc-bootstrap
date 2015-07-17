@@ -190,7 +190,7 @@ $ pacman -Qqn
 ## TODO:
 - Set up swap space
 - Colorize man pages and pacman
-- Random number generator
+- Random number generator (https://wiki.archlinux.org/index.php/Haveged is enabled by deafault)
 - Serial terminal
 - systemd unit/service/timer examples
 - ddns setup
