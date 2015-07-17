@@ -200,3 +200,6 @@ $ pacman -Qqn
 - [YAML ansible-examples.yml](https://gist.github.com/bcomnes/668938bbacd8f3623957)
 - [Arch Time Sync](https://wiki.archlinux.org/index.php/Time#Time_synchronization)
 - [How to Read the Arch Wiki](https://wiki.archlinux.org/index.php/Help:Reading)
+- [Arch Wiki RaspberryPi](https://wiki.archlinux.org/index.php/Raspberry_Pi)
+- [archpi.dabase.com](http://archpi.dabase.com)
+- [phortx/Raspberry-Pi-Setup-Guide](https://github.com/phortx/Raspberry-Pi-Setup-Guide)
