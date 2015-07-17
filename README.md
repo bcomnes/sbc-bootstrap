@@ -187,6 +187,12 @@ $ pacman -Syu
 $ pacman -Qqn
 ```
 
+## TODO:
+- Set up swap space
+- Colorize man pages
+- Randome number generator
+- Serial terminal
+
 ## References:
 
 - [5minbootstrap](https://github.com/phred/5minbootstrap/blob/master/bootstrap.yml)
