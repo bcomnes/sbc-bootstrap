@@ -189,9 +189,14 @@ $ pacman -Qqn
 
 ## TODO:
 - Set up swap space
-- Colorize man pages
-- Randome number generator
+- Colorize man pages and pacman
+- Random number generator
 - Serial terminal
+- systemd unit/service/timer examples
+- ddns setup
+- ipfs 
+- icecast
+- modularize program roles
 
 ## References:
 
