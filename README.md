@@ -197,6 +197,7 @@ $ pacman -Qqn
 - ipfs 
 - icecast
 - modularize program roles
+- fail2ban setup... its helpful.  if your getting pwned you got bigger problems.
 
 ## References:
 
