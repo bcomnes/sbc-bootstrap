@@ -92,7 +92,7 @@ $ pacman -S etckeeper
 $ cd /etc
 $ etckeeper init
 $ git add -A ; git commit -m 'Initial commit'
-```
+```to
 
 Useful for keeping track of changes
 
@@ -198,6 +198,7 @@ $ pacman -Qqn
 - icecast
 - modularize program roles
 - fail2ban setup... its helpful.  if your getting pwned you got bigger problems.
+- Fix sudo play to use /etc/sudoers.d/
 
 ## References:
 
