@@ -187,19 +187,6 @@ $ pacman -Syu
 $ pacman -Qqn
 ```
 
-## TODO:
-- Set up swap space
-- Colorize man pages and pacman
-- Random number generator (https://wiki.archlinux.org/index.php/Haveged is enabled by deafault)
-- Serial terminal
-- systemd unit/service/timer examples
-- ddns setup
-- ipfs 
-- icecast
-- modularize program roles
-- fail2ban setup... its helpful.  if your getting pwned you got bigger problems.
-- Fix sudo play to use /etc/sudoers.d/
-
 ## References:
 
 - [5minbootstrap](https://github.com/phred/5minbootstrap/blob/master/bootstrap.yml)
