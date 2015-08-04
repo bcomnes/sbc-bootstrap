@@ -187,6 +187,11 @@ $ pacman -Syu
 $ pacman -Qqn
 ```
 
+```sh
+# Rebuild ramdisk
+$ mkinitcpio -p linux
+```
+
 ## References:
 
 - [5minbootstrap](https://github.com/phred/5minbootstrap/blob/master/bootstrap.yml)
