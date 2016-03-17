@@ -38,7 +38,7 @@
 
     - name: enable wheel group
       lineinfile:
-        dest: "/etc/sudoers"
+        dest: "/etc/sudoers.d/wheel"
         regexp: "^%wheel"
         line: "%wheel      ALL=(ALL) NOPASSWD: ALL"
         validate: 'visudo -cf %s'

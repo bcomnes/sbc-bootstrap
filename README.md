@@ -1,4 +1,4 @@
-# Raspberry Pi Arch Linux ARM Bootstrap
+# Raspberry Pi Arch Linux ARM Ansible Playbooks
 
 ![](img/raspi1.jpg)
 ![](img/raspi2.jpg)
@@ -14,6 +14,10 @@ Intro readings:
 - [`systemd` basics](https://wiki.archlinux.org/index.php/Systemd#Basic_systemctl_usage)
 
 Arch is a difficult OS for beginners because it requires a fairly comprehensive understanding of how Linux systems are put together.
+
+This repo provides sane base configuration through a minimal boostraping playbook and (soon) a collection of optional roles approrpirate for a raspi2 to serve different roles.
+
+![](img/ohyes.gif)
 
 ## For new SD Cards
 
@@ -88,7 +92,7 @@ $ pacman -S etckeeper
 $ cd /etc
 $ etckeeper init
 $ git add -A ; git commit -m 'Initial commit'
-```
+```to
 
 Useful for keeping track of changes
 
@@ -106,7 +110,7 @@ Useful for keeping track of changes
 
 - Ansible is is a `python2` program.  Use `pip2` to install it.  This method provides a `paramiko` that is able to connect to the newer Arch Openssh.
 
-- Arch does not have a `python` in its default path.  Arch installs python2 as `python2` and python3 as `python`/`python3`.  Ansible is dumb this this and doesn't look for a `python2`:  [#how-do-i-handle-python-pathing-not-having-a-python-2-x-in-usr-bin-python-on-a-remote-machine](http://docs.ansible.com/faq.html#how-do-i-handle-python-pathing-not-having-a-python-2-x-in-usr-bin-python-on-a-remote-machine) Add to ansible your hosts file:
+- Arch does not have a `python` in its default path.  Arch installs python2 as `python2` and python3 as `python`/`python3`.  Ansible is dumb about this this and doesn't look for a `python2`:  [#how-do-i-handle-python-pathing-not-having-a-python-2-x-in-usr-bin-python-on-a-remote-machine](http://docs.ansible.com/faq.html#how-do-i-handle-python-pathing-not-having-a-python-2-x-in-usr-bin-python-on-a-remote-machine) Add to ansible your hosts file:
 
 ```ini
 ansible_python_interpreter=/usr/bin/python2
@@ -178,6 +182,16 @@ $ timedatectl list-timezones
 $ pacman -Syu
 ```
 
+```sh
+# listing installed packages
+$ pacman -Qqn
+```
+
+```sh
+# Rebuild ramdisk
+$ mkinitcpio -p linux
+```
+
 ## References:
 
 - [5minbootstrap](https://github.com/phred/5minbootstrap/blob/master/bootstrap.yml)
@@ -191,3 +205,6 @@ $ pacman -Syu
 - [YAML ansible-examples.yml](https://gist.github.com/bcomnes/668938bbacd8f3623957)
 - [Arch Time Sync](https://wiki.archlinux.org/index.php/Time#Time_synchronization)
 - [How to Read the Arch Wiki](https://wiki.archlinux.org/index.php/Help:Reading)
+- [Arch Wiki RaspberryPi](https://wiki.archlinux.org/index.php/Raspberry_Pi)
+- [archpi.dabase.com](http://archpi.dabase.com)
+- [phortx/Raspberry-Pi-Setup-Guide](https://github.com/phortx/Raspberry-Pi-Setup-Guide)
