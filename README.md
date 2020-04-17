@@ -1,5 +1,7 @@
 # Raspberry Pi Arch Linux ARM Ansible Playbooks
 
+**NOTE**: DEPRECIATED IN FAVOR OF https://github.com/bcomnes/raspi-packer
+
 ![](img/raspi1.jpg)
 ![](img/raspi2.jpg)
 
